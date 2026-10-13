@@ -901,6 +901,10 @@ mod tests {
             "SELECT $$'$$, lo_export(16409, '/tmp/x')",
             "SELECT $tag$'$tag$, lo_export(16409, '/tmp/x')",
             "SELECT E'\\'', lo_export(16409, '/tmp/x')",
+            // In U&'...' a backslash only starts a unicode escape and cannot
+            // escape a quote, so the standard reading already ends it right.
+            "SELECT U&'\\0041\\\\', lo_export(16409, '/tmp/x')",
+            "SELECT U&'d!0061t!+000061' UESCAPE '!', lo_export(16409, '/tmp/x')",
         ] {
             assert_ne!(classify_query_kind(q), "select", "query: {q}");
         }
