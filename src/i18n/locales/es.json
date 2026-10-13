@@ -2245,8 +2245,8 @@
       "openSettings": "Abrir configuración",
       "openConnections": "Abrir gestor de conexiones",
       "openTableInConsole": "Abrir la tabla actual en la consola SQL",
-      "toggleWordWrapEnable": "Activar ajuste de linea",
-      "toggleWordWrapDisable": "Desactivar ajuste de linea"
+      "toggleWordWrapEnable": "Activar ajuste de línea",
+      "toggleWordWrapDisable": "Desactivar ajuste de línea"
     }
   },
   "pagination": {

@@ -19,8 +19,11 @@ export function useCommandPaletteActionItems(
   const wordWrapEnabled = settingsContext?.settings.editorWordWrap ?? true;
   const toggleWordWrap = useCallback(() => {
     if (!settingsContext) return;
-    settingsContext.updateSetting("editorWordWrap", !wordWrapEnabled);
-  }, [settingsContext, wordWrapEnabled]);
+    // Functional updater: reading the current value at write time avoids a
+    // stale snapshot overwriting a newer one when toggles fire in quick
+    // succession (palette + settings toggle).
+    settingsContext.updateSetting("editorWordWrap", (prev) => !(prev ?? true));
+  }, [settingsContext]);
 
   return useMemo(() => {
     if (!scope) return [];
